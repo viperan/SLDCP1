@@ -23,6 +23,10 @@ Fourth step: I masked the cannied images with vertecies of [[470, 320],[490, 320
 Fifth step: I ran houghLine function with     rho = 2 theta = np.pi/180 threshold = 15 min_line_len = 20 and max_line_gap = 120
 Six step would be superimposing image with the hough line.
 
+result of pipeline prior to improvement in draw line:
+
+<img src="screenshot/pipeline_result_original.jpg" width="480" alt="Pipeline first stage" />
+
 Drawlines in making:
 
 My Drawlines strategy is to separate the left and right lanes into two separate processes. 
@@ -34,7 +38,11 @@ After vector coeficient are produced, now we want to build y=mx+b using poly1d f
 Now it's time to connecting the dot in between lines. first we sort it out (alligning the points from the lowest x to somewhere halfway in the image/ left to right fashion )
 Then I repeat the process for the other half for the right line. at this time the connecting the dot is on the reverse 
 
-###  Shortcomings with my current pipeline
+result of improved draw line :
+
+<img src="screenshot/pipeline_result_drawline_improved.jpg" width="480" alt="Pipeline first stage" />
+
+###  Shortcomings with my current pipeline 
 
 One potential shortcoming would be what would happen when the road take a turn left and right, for some reason my line became unstable and change a lot of time.
 
@@ -45,7 +53,7 @@ Another shortcoming could be if the image size change. I found out the hard way 
 A possible improvement would be to improve how I utilize y=mx+b. I was basically linearly stepping up the line 10 point at a time which might not the right way to do it and create instability in finding the correct slope line
 
 Another potential improvement could be to utilize error table from polyfit and perform another regression to find better vector coeficient (drop out noisy data )
-or maybe we can do 2nd order (curve equation instead of linear y=mx+b) since there are no such thing as perfect straight line there will aways some bend in between
+or maybe we can do 2nd order (curve equation instead of linear y=mx+b) since there are no such thing as perfect straight line in real life.
 
 
 
